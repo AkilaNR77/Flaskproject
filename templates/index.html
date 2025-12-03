@@ -1,0 +1,28 @@
+<h1>Student Management System</h1>
+
+<form action="/add" method="POST">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="number" name="age" placeholder="Age" required>
+    <button type="submit">Add Student</button>
+</form>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>ID</th><th>Name</th><th>Age</th><th>Actions</th>
+    </tr>
+    {% for s in students %}
+    <tr>
+        <td>{{ s[0] }}</td>
+        <td>{{ s[1] }}</td>
+        <td>{{ s[2] }}</td>
+        <td>
+            <form action="/update/{{ s[0] }}" method="POST">
+                <input type="text" name="name" value="{{ s[1] }}">
+                <input type="number" name="age" value="{{ s[2] }}">
+                <button type="submit">Update</button>
+            </form>
+            <a href="/delete/{{ s[0] }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
